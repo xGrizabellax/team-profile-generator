@@ -166,19 +166,16 @@ const employeeQue = {
 }
 
 
-function init() {
-    inquirer.prompt(managerQue)
-        .then((data) => {
-            const manager = new Manager(data.name, data.id, data.email, data.officeNumber)
-            employees.push(manager)
-            console.log(employees)
-            addMember();
-        })
+async function init() {
+    let data = await inquirer.prompt(managerQue)
+    const manager = new Manager(fixName(data.name), data.id, data.email, data.officeNumber)
+    employees.push(manager)
+    console.log(employees)
+    addMember();
 }
 
-function addMember() {
-    inquirer.prompt(employeeQue)
-        .then((data) => {
+async function addMember() {
+    let data = await inquirer.prompt(employeeQue)
             switch (data.role) {
                 case "Engineer":
                     addEngineer();
@@ -190,31 +187,37 @@ function addMember() {
                     writeToFile(data);
                     break;
             }
-
-        })
 }
 
 async function addEngineer() {
     let data = await inquirer.prompt(engineerQue)
-    const engineer = new Engineer(data.name, data.id, data.email, data.github)
-        employees.push(engineer)
+    fixName(data.name)
+    const engineer = new Engineer(fixName(data.name), data.id, data.email, data.github)
+    employees.push(engineer)
     addMember()
 }
 
 
-function addIntern() {
-    inquirer.prompt(internQue)
-        .then((data) => {
-            const intern = new Intern(data.name, data.id, data.email, data.school)
-            employees.push(intern)
-            addMember()
-        })
+async function addIntern() {
+    let data = await inquirer.prompt(internQue)
+    const intern = new Intern(fixName(data.name), data.id, data.email, data.school)
+    employees.push(intern)
+    addMember()
 }
 
 function writeToFile(data) {
     const makeHtml = generateHtml(data);
     fs.writeFile('index.html', makeHtml, (err =>
         err ? console.log(err) : console.log('Created your HTML file')))
+}
+
+function fixName(name) {
+    let nameArray = name.split('')
+    let firstCap = nameArray[0].toUpperCase()
+    let restLow = nameArray.slice(1).join('').toLowerCase()
+    let newName = firstCap + restLow
+    console.log(newName)
+    return newName;
 }
 
 
