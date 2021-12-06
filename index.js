@@ -197,9 +197,7 @@ function addMember() {
 async function addEngineer() {
     let data = await inquirer.prompt(engineerQue)
     const engineer = new Engineer(data.name, data.id, data.email, data.github)
-    // .then((data) => {
-    //     const engineer = new Engineer(data.name, data.id, data.email, data.github)
-    //     employees.push(engineer)
+        employees.push(engineer)
     addMember()
 }
 

@@ -1,7 +1,7 @@
 {
   "name": "team-profile-generator",
   "version": "1.0.0",
-  "description": "",
+  "description": "Makes an organized team page of each individual's role and contact information.   Click on this link to watch my walkthrough video of the team profile generator!   https://watch.screencastify.com/v/qCfWBCMw3dl2oZK5bLEq",
   "main": "index.js",
   "directories": {
     "lib": "lib"
