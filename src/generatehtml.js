@@ -76,7 +76,7 @@ function generateCardSection(data) {
             <h3 class='col-12'>${employee.id}</h3>
         </h2>
         <h2 class='col-12 email'>Email:
-            <h3 class='col-12'><a href='${employee.email}'>${employee.email}</a></h3>
+            <h3 class='col-12'><a href='mailto:${employee.email}'>${employee.email}</a></h3>
         </h2>
         ${roleProperty(employee)}
     </div>

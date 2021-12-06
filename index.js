@@ -86,7 +86,7 @@ const engineerQue = [{
     validate: (data) => {
         if ( data === '') {
             return `Please enter your address`
-        } else if (data.includes(`@`) !== true) {
+        } else if (data.includes(`@` && `.com`) !== true) {
             return `Please enter a valid email address`
         }
         return true;
@@ -134,7 +134,7 @@ const internQue = [{
     validate: (data) => {
         if ( data === '') {
             return `Please enter your address`
-        } else if (data.includes(`@`) !== true) {
+        } else if (data.includes(`@` && `.com`) !== true) {
             return `Please enter a valid email address`
         }
         return true;
