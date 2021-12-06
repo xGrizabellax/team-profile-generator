@@ -1,10 +1,11 @@
 const inquirer = require('inquirer')
 const fs = require('fs')
+const generateHtml = require('./src/generatehtml')
 // I am prompted to add a manager
-const Employee = require('./lib/employee')
 const Manager = require('./lib/manager')
 const Engineer = require('./lib/engineer')
 const Intern = require('./lib/intern')
+employees = []
 
 const managerQue = [{
     type: 'input',
@@ -74,7 +75,7 @@ const internQue = [{
 
 const employeeQue = {
     type: 'list',
-    name: 'add',
+    name: 'role',
     message: 'Would you like to add another team member?',
     choices: [
         'Engineer',
@@ -88,40 +89,56 @@ function init() {
     inquirer.prompt(managerQue)
         .then((data) => {
             const manager = new Manager(data.name, data.id, data.email, data.officeNumber)
-            console.log(manager.getName());
-            console.log(manager.getId());
+            employees.push(manager) 
+            console.log(employees)
             addMember();
-        })     
+        })
 }
 
 function addMember() {
     inquirer.prompt(employeeQue)
-    .then((data) => {
-    if (data.add === 'Engineer') {
-        addEngineer()
-    } else if (data.add === 'Intern') {
-        addIntern()
-    }})
+        .then((data) => {
+            switch (data.role) {
+                case "Engineer":
+                    addEngineer();
+                    break;
+                case "Intern":
+                    addIntern();
+                    break;
+                case "I'm finished building my team":
+                    writeToFile(data);
+                    break;
+            }
+
+        })
 }
 
 function addEngineer() {
     inquirer.prompt(engineerQue)
-    .then((data) => {
-        const engineer = new Engineer(data.name, data.id, data.email, data.officeNumber)
-        console.log(engineer.getName())
-        console.log(engineer.getId())
-        addMember()
-    })
+        .then((data) => {
+            const engineer = new Engineer(data.name, data.id, data.email, data.github)
+            employees.push(engineer)
+            addMember()
+        })
 }
 
-function addIntern(){
+function addIntern() {
     inquirer.prompt(internQue)
-    .then((data) => {
-        const intern = new Intern(data.name, data.id, data.email, data.school)
-        console.log(intern.getName())
-        console.log(intern.getSchool())
-    })
+        .then((data) => {
+            const intern = new Intern(data.name, data.id, data.email, data.school)
+            employees.push(intern) 
+            addMember()
+        })
 }
+
+function writeToFile(data) {
+    const makeHtml = generateHtml(data);
+    fs.writeFile('index.html', makeHtml, (err =>
+        err ? console.log(err) : console.log('Created your HTML file')))
+}
+
 
 init();
+
+
 
