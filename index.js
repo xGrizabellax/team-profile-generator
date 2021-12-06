@@ -12,7 +12,7 @@ const managerQue = [{
     name: 'name',
     message: 'Please type in your name.',
     validate: (data) => {
-        if ( data === '') {
+        if (data === '') {
             return `Please enter your name`
         };
         return true;
@@ -23,7 +23,7 @@ const managerQue = [{
     name: 'id',
     message: 'Please type your employee ID.',
     validate: (data) => {
-        if ( data === '') {
+        if (data === '') {
             return `Please enter your id`
         };
         return true;
@@ -34,7 +34,7 @@ const managerQue = [{
     name: 'email',
     message: 'Please enter your email address.',
     validate: (data) => {
-        if ( data === '') {
+        if (data === '') {
             return `Please enter your address`
         } else if (data.includes(`@`) !== true) {
             return `Please enter a valid email address`
@@ -62,7 +62,7 @@ const engineerQue = [{
     name: 'name',
     message: 'Please type in your name.',
     validate: (data) => {
-        if ( data === '') {
+        if (data === '') {
             return `Please enter your name`
         };
         return true;
@@ -73,7 +73,7 @@ const engineerQue = [{
     name: 'id',
     message: 'Please type your employee ID.',
     validate: (data) => {
-        if ( data === '') {
+        if (data === '') {
             return `Please enter your id`
         };
         return true;
@@ -84,7 +84,7 @@ const engineerQue = [{
     name: 'email',
     message: 'Please enter your email address.',
     validate: (data) => {
-        if ( data === '') {
+        if (data === '') {
             return `Please enter your address`
         } else if (data.includes(`@`) !== true) {
             return `Please enter a valid email address`
@@ -110,7 +110,7 @@ const internQue = [{
     name: 'name',
     message: 'Please type in your name.',
     validate: (data) => {
-        if ( data === '') {
+        if (data === '') {
             return `Please enter your name`
         };
         return true;
@@ -121,7 +121,7 @@ const internQue = [{
     name: 'id',
     message: 'Please type your employee ID.',
     validate: (data) => {
-        if ( data === '') {
+        if (data === '') {
             return `Please enter your id`
         };
         return true;
@@ -132,7 +132,7 @@ const internQue = [{
     name: 'email',
     message: 'Please enter your email address.',
     validate: (data) => {
-        if ( data === '') {
+        if (data === '') {
             return `Please enter your address`
         } else if (data.includes(`@`) !== true) {
             return `Please enter a valid email address`
@@ -145,7 +145,7 @@ const internQue = [{
     name: 'school',
     message: 'Please enter where you went to school.',
     validate: (data) => {
-        if ( data === '') {
+        if (data === '') {
             return `Please enter your school`
         };
         return true;
@@ -170,7 +170,7 @@ function init() {
     inquirer.prompt(managerQue)
         .then((data) => {
             const manager = new Manager(data.name, data.id, data.email, data.officeNumber)
-            employees.push(manager) 
+            employees.push(manager)
             console.log(employees)
             addMember();
         })
@@ -194,20 +194,21 @@ function addMember() {
         })
 }
 
-function addEngineer() {
-    inquirer.prompt(engineerQue)
-        .then((data) => {
-            const engineer = new Engineer(data.name, data.id, data.email, data.github)
-            employees.push(engineer)
-            addMember()
-        })
+async function addEngineer() {
+    let data = await inquirer.prompt(engineerQue)
+    const engineer = new Engineer(data.name, data.id, data.email, data.github)
+    // .then((data) => {
+    //     const engineer = new Engineer(data.name, data.id, data.email, data.github)
+    //     employees.push(engineer)
+    addMember()
 }
+
 
 function addIntern() {
     inquirer.prompt(internQue)
         .then((data) => {
             const intern = new Intern(data.name, data.id, data.email, data.school)
-            employees.push(intern) 
+            employees.push(intern)
             addMember()
         })
 }
