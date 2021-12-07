@@ -15,6 +15,15 @@
 
   ## Usage:
   For keeping track of your team and their roles.
+  
+  All tests passed after running 'npm run test' through the command line:
+  ![Screen Shot 2021-12-06 at 11 50 39 PM](https://user-images.githubusercontent.com/88065363/144974831-bca48722-6090-42ec-80e1-915bb0cc21a9.png)
+
+
+The generated HTML with team and info:
+  ![Screen Shot 2021-12-06 at 11 53 31 PM](https://user-images.githubusercontent.com/88065363/144974814-ef6fe377-0de4-44b6-8928-5eca05a40e95.png)
+
+  
 
   ## Tests:
   Make sure that you type in a valid email address!
