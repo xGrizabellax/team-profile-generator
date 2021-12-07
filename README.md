@@ -21,7 +21,7 @@
 
 
 The generated HTML with team and info:
-  ![Screen Shot 2021-12-06 at 11 53 31 PM](https://user-images.githubusercontent.com/88065363/144974814-ef6fe377-0de4-44b6-8928-5eca05a40e95.png)
+![Screen Shot 2021-12-07 at 12 04 58 AM](https://user-images.githubusercontent.com/88065363/144975523-341e44d2-5416-44fb-8280-64ccf20b67bf.png)
 
   
 
